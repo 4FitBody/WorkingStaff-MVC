@@ -5,10 +5,10 @@ using MediatR;
 
 public class UpdateCommand : IRequest
 {
-    public string? Id { get; set; }
+    public int? Id { get; set; }
     public Exercise? Exercise { get; set; }
 
-    public UpdateCommand(string? id, Exercise? exercise)
+    public UpdateCommand(int? id, Exercise? exercise)
     {
         this.Id = id;
 

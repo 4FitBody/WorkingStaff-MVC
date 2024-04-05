@@ -16,6 +16,6 @@ public class CreateHandler : IRequestHandler<CreateCommand>
     {
         ArgumentNullException.ThrowIfNull(request.Exercise);
 
-        await this.exerciseRepository.Create(request.Exercise);
+        await this.exerciseRepository.CreateAsync(request.Exercise);
     }
 }

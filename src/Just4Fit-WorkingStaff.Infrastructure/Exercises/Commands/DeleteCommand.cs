@@ -4,9 +4,9 @@ using MediatR;
 
 public class DeleteCommand : IRequest
 {
-    public string? Id { get; set; }
+    public int? Id { get; set; }
 
-    public DeleteCommand(string? id) => this.Id = id;
+    public DeleteCommand(int? id) => this.Id = id;
 
     public DeleteCommand() {}
 }
