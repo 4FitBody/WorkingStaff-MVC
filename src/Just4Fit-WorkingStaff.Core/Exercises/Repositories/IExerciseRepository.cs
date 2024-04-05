@@ -1,6 +1,6 @@
-using Just4Fit_WorkingStaff.Core.Exercises.Models;
-
 namespace Just4Fit_WorkingStaff.Core.Exercises.Repositories;
+
+using Just4Fit_WorkingStaff.Core.Exercises.Models;
 
 public interface IExerciseRepository
 {

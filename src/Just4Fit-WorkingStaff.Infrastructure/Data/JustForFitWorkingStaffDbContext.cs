@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 public class JustForFitWorkingStaffDbContext : IdentityDbContext<User, IdentityRole, string>
 {
     public DbSet<Exercise> Exercises { get; set; }
+    public DbSet<News> News { get; set; }
+    public DbSet<Food> Food { get; set; }
+    public DbSet<SportSupplement> SportSupplements { get; set; }
 
     public JustForFitWorkingStaffDbContext(DbContextOptions<JustForFitWorkingStaffDbContext> options) : base(options) { }
 }
