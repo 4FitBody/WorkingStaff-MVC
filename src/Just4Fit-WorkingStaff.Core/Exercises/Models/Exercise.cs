@@ -2,7 +2,7 @@ namespace Just4Fit_WorkingStaff.Core.Exercises.Models;
 
 public class Exercise
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 

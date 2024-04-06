@@ -1,4 +1,4 @@
-namespace Just4Fit_WorkingStaff.Core.Exercises.Models;
+namespace Just4Fit_WorkingStaff.Core.Food.Models;
 
 public class Food
 {
