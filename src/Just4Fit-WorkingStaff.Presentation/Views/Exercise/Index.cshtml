@@ -3,3 +3,21 @@
 @{
     ViewData["Title"] = "Exercises page";
 }
+
+@foreach (var exercise in Model.Exercises)
+{
+    <div id="exercise-list-item" class="col-md-4">
+        <div id="exercise-card" class="card mb-4 shadow-sm">
+            <a id="exercise-link" class="details-link" asp-controller="Exercise" asp-action="Details" asp-route-id="@exercise.Id">
+                <div id="exercise-data" class="card-body all-items">
+                    <img src="@exercise.GifUrl" alt="@exercise.Name"/>
+                    <div id="exercise-info" class="tags">
+                        <label id="body-part-field" class="exercise-body-part">@exercise.BodyPart</label>
+                        <label id="target-field" class="exercise-target">@exercise.Target</label>
+                    </div>
+                    <div id="name-field" class="exercise-name"><b>@exercise.Name</b></div>
+                </div>
+            </a>
+        </div>
+    </div>
+}
