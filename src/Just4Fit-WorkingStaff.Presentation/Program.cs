@@ -1,7 +1,9 @@
 using System.Reflection;
 using Just4Fit_WorkingStaff.Core.Exercises.Repositories;
+using Just4Fit_WorkingStaff.Core.Food.Repositories;
 using Just4Fit_WorkingStaff.Infrastructure.Data;
 using Just4Fit_WorkingStaff.Infrastructure.Exercises.Repositories;
+using Just4Fit_WorkingStaff.Infrastructure.Food.Repositories;
 using Just4Fit_WorkingStaff.Users.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +20,8 @@ builder.Services.AddMediatR(configurations =>
 });
 
 builder.Services.AddScoped<IExerciseRepository, ExerciseSqlRepository>();
+
+builder.Services.AddScoped<IFoodRepository, FoodSqlRepository>();
 
 builder.Services.AddAuthorization();
 
