@@ -29,38 +29,20 @@ public class SportSupplementRepository : ISportSupplementRepository
         await dbContext.SaveChangesAsync();
     }
 
-
     public async Task DeleteAsync(int id)
     {
         var supplementforDelete = await dbContext.SportSupplements.FindAsync(id);
 
-        if (supplementforDelete != null)
-        {
-            dbContext.SportSupplements.Remove(supplementforDelete);
+        dbContext.SportSupplements.Remove(supplementforDelete);
 
-            await dbContext.SaveChangesAsync();
-        }
+        await dbContext.SaveChangesAsync();
+
     }
 
 
     public async Task UpdateAsync(int id, SportSupplement updatedSupplement)
     {
-        if (updatedSupplement == null)
-        {
-            throw new ArgumentNullException(nameof(updatedSupplement));
-        }
-
-        if (id != updatedSupplement.Id)
-        {
-            throw new ArgumentException("There is no Such Sport Supplement", nameof(id));
-        }
-
         var existingSupplement = await dbContext.SportSupplements.FindAsync(id);
-
-        if (existingSupplement == null)
-        {
-            throw new ArgumentException("Supplement not found", nameof(id));
-        }
 
         existingSupplement.Name = updatedSupplement.Name;
         existingSupplement.ImageUrl = updatedSupplement.ImageUrl;
