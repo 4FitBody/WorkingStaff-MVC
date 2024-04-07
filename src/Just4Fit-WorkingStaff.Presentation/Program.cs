@@ -1,7 +1,10 @@
 using System.Reflection;
 using Just4Fit_WorkingStaff.Core.Exercises.Repositories;
+using Just4Fit_WorkingStaff.Core.News.Models;
+using Just4Fit_WorkingStaff.Core.News.Repositories;
 using Just4Fit_WorkingStaff.Infrastructure.Data;
 using Just4Fit_WorkingStaff.Infrastructure.Exercises.Repositories;
+using Just4Fit_WorkingStaff.Infrastructure.News.Repositories;
 using Just4Fit_WorkingStaff.Users.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +21,8 @@ builder.Services.AddMediatR(configurations =>
 });
 
 builder.Services.AddScoped<IExerciseRepository, ExerciseSqlRepository>();
+
+builder.Services.AddScoped<INewsRepository, NewsSqlRepository>();
 
 builder.Services.AddAuthorization();
 
