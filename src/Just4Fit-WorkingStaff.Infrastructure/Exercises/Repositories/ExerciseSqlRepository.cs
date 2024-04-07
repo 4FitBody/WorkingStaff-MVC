@@ -31,9 +31,9 @@ public class ExerciseSqlRepository : IExerciseRepository
     public async Task DeleteAsync(int id)
     {
         var exerciseToDelete = await this.dbContext.Exercises.FirstOrDefaultAsync(exercise => exercise.Id == id);
-    
+
         this.dbContext.Remove<Exercise>(exerciseToDelete!);
-    
+
         await this.dbContext.SaveChangesAsync();
     }
 

@@ -6,6 +6,7 @@ using MediatR;
 public class CreateCommand : IRequest
 {
     public Exercise? Exercise { get; set; }
+    public object? SportSupplement { get; internal set; }
 
     public CreateCommand(Exercise? exercise) => this.Exercise = exercise;
 
