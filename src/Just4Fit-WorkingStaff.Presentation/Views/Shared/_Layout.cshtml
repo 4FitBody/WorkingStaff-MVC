@@ -25,38 +25,47 @@
                         <img class="logo" src="~/Images/Logo.png"/>
                     </a>
 
-                        <ul class="header-menu">
+                    <ul class="header-menu">
+                        @if(!isMainPage)
+                        {
                             <li>
                                 <a asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li>
                                 <a asp-controller="Home" asp-action="AboutUs">About us</a>
                             </li>
-                            @if(isAuthenticated)
-                            {
-                                <li>
-                                    <a asp-controller="Food" asp-action="Get">Food</a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Exercise" asp-action="Index">Exercises</a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Identity" asp-action="Profile">Profile</a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Identity" asp-action="Logout">Logout</a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a asp-controller="Identity" asp-action="Login">Login</a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Identity" asp-action="Register">Register</a>
-                                </li>
-                            }
-                        </ul>
+                        }
+                        <li>
+                            <a asp-controller="Food" asp-action="Index">Food</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Exercise" asp-action="Index">Exercises</a>
+                        </li>
+                        <li>
+                            <a asp-controller="News" asp-action="Index">News</a>
+                        </li>
+                        <li>
+                            <a asp-controller="SportSupplement" asp-action="Index">Sport supplements</a>
+                        </li>
+                        @if(isAuthenticated)
+                        {
+                            <li>
+                                <a asp-controller="Identity" asp-action="Profile">Profile</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Identity" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Identity" asp-action="Login">Login</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Identity" asp-action="Register">Register</a>
+                            </li>
+                        }
+                    </ul>
                 </header>
 
                 @RenderBody()
@@ -78,6 +87,8 @@
 
         @if(isMainPage)
         {
+            <partial name="_News" />
+
             <partial name="_ExercisePrograms" />
 
             <partial name="_NutritionPrograms" />

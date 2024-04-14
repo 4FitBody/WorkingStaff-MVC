@@ -23,6 +23,10 @@ public class ExerciseSqlRepository : IExerciseRepository
 
     public async Task CreateAsync(Exercise exercise)
     {
+        exercise.Instructions = exercise.Instructions!.Take(exercise.Instructions!.Length - 1).ToArray();
+
+        exercise.SecondaryMuscles = exercise.SecondaryMuscles!.Take(exercise.SecondaryMuscles!.Length - 1).ToArray();
+
         await this.dbContext.Exercises.AddAsync(exercise);
 
         await this.dbContext.SaveChangesAsync();

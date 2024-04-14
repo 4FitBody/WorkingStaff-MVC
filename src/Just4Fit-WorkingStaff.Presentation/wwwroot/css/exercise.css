@@ -144,3 +144,13 @@ button.exercise-search {
 span, ul, li {
     font-size: 22px;
 }
+
+.add-link,
+.add-link:hover {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    margin-left: 100px;
+}
