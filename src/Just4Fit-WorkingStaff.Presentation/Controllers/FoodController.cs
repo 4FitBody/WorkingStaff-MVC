@@ -28,13 +28,19 @@ public class FoodController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromForm] Food food)
+    public async Task<IActionResult> Create([FromForm] Food food, IFormFile imageFile)
     {
         var createCommand = new CreateCommand(food);
 
         await this.sender.Send(createCommand);
 
         return base.RedirectToAction(actionName: "Index");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        return base.View();
     }
 
     [HttpDelete]
@@ -44,7 +50,7 @@ public class FoodController : Controller
 
         await this.sender.Send(createCommand);
 
-        return base.RedirectToAction(actionName: "Index");
+        return Ok();
     }
 
     [HttpPut]
