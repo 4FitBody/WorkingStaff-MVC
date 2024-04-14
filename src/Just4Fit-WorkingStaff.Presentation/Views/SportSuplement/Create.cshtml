@@ -1,0 +1,54 @@
+@model SportSupplement
+
+@{
+    ViewData["Title"] = "Create new exercise";
+
+    string name = string.Empty;
+
+    string manufactureCountry = string.Empty;
+
+    string imageUrl = string.Empty;
+
+    string description = string.Empty;
+
+    double quantity = default;
+
+    bool isApproved = false;
+}
+
+<form enctype="multipart/form-data" method="post" asp-controller="SportSuplement" asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="@name" class="form-label">Name: </label>
+        <input required type="text" asp-for="@name" class="form-control" value="@name">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@manufactureCountry" class="form-label">Manufacture Country: </label>
+        <input required type="text" asp-for="@manufactureCountry" class="form-control" value="@manufactureCountry">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@imageUrl" class="form-label">Image Url: </label>
+        <input id="file" name="file" required type="file" asp-for="@imageUrl" class="form-control" value="@imageUrl">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@description" class="form-label">Description: </label>
+        <input required type="text" asp-for="@description" class="form-control" value="@description">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@quantity" class="form-label">Quantity: </label>
+        <input required type="text" asp-for="@quantity" class="form-control" value="@quantity">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@isApproved" class="form-check-label">Is Approved: </label>
+        <input type="checkbox" asp-for="@isApproved" class="form-check-input" checked="@isApproved">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script src="~/js/suplements-functions.js"></script>
