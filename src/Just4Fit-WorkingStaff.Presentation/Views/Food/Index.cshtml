@@ -21,7 +21,7 @@
         {
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <form id="deleteForm-@pair.Id" asp-controller="Food" asp-action="Delete">
+                    <form id="@pair.Id">
 
                         <img src="@pair.ImageUrl" class="card-img-top" alt="FoodCover">
 
@@ -31,6 +31,8 @@
                         </div>
 
                         <button type="button" onclick="submitDeleteForm('@pair.Id')" class="btn btn-danger">Delete</button>
+                        <button type="button" onclick="location.href='@Url.Action("Update",new {id = pair.Id})'"
+                            class="btn btn-danger"> Change </button>
                     </form>
                 </div>
             </div>
@@ -59,22 +61,27 @@
     }
     toggleSearch('search-bar', 'search-button')
 
-    function submitDeleteForm(itemId) {
-        var form = document.getElementById('deleteForm-' + itemId);
-        var formData = new FormData(form);
-        fetch(form.action + '?id=' + itemId, {
-            method: 'DELETE',
-            body: formData
-        })
-            .then(response => {
-                if (response.ok) {
-                    form.remove();
-                } else {
-                    console.error('Error deleting resource');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    async function submitDeleteForm(itemId) {
+        event.preventDefault();
+
+        const form = document.getElementById(itemId);
+
+        const formData = new FormData(form);
+
+        let jsonData = {};
+
+        for (let [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+
+        await fetch('/Food/Delete/' + itemId, {
+            method: "DELETE",
+            body: JSON.stringify(jsonData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(data => {
+            window.location.href = '/Food/Index';
+        });
     }
 </script>

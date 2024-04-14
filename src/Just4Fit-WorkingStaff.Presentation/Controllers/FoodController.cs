@@ -60,6 +60,16 @@ public class FoodController : Controller
 
         await this.sender.Send(createCommand);
 
-        return base.RedirectToAction(actionName: "Index");
+        return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        var getByIdQuery = new GetByIdQuery(id);
+
+        var food = await this.sender.Send(getByIdQuery);
+
+        return View(food);
     }
 }
