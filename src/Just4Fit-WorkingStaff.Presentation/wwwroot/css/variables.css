@@ -1,0 +1,12 @@
+:root {
+    --lightgray: #D9D9D9;
+    --gray: #9c9c9c;
+    --orange: #f48915;
+    --darkGrey: #464D53;
+    --caloryCard: #656565;
+    --planCard: linear-gradient(210.41deg, #fa5042 1.14%, #ffa739 100.75%);
+    --foodCard: linear-gradient(210.41deg, #6c400b 1.14%, #faa442 100.75%);
+    --supplementCard: linear-gradient(210.41deg, #6b0b6c 1.14%, #fa428c 100.75%);
+    --appColor:  #3c3f45;
+    --animated-span-background-color: #363d42;
+  }

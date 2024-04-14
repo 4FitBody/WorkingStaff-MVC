@@ -1,0 +1,69 @@
+@model Exercise
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel='stylesheet' href='~/css/exercise.css'>
+
+<br>
+<br>
+
+<h1 style="text-align: center !important;">@Model.Name.ToUpper()</h1>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="width: 1250px">
+                <div class="card-body description">
+                    <img class="image-instruction" src="@Model.GifUrl" alt="@Model.Name"/>
+                    <div class="details">
+                        <style>
+                            * {
+                                text-align: left !important;
+                            }
+                        </style>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <img src="~/icons/body-part.png"/>
+                        <span><b>Body part: </b>@Model.BodyPart</span>
+                        <br>
+                        <br>
+                        <img src="~/icons/equipment.png"/>
+                        <span><b>Equipment: </b>@Model.Equipment</span>
+                        <br>
+                        <br>
+                        <img src="~/icons/target.png"/>
+                        <span><b>Target: </b>@Model.Target</span>
+                        <br>
+                        <br>
+                        <span><b>Secondary muscles: </b></span>
+                        <ol>
+                            @foreach (var muscle in @Model.SecondaryMuscles)
+                            {
+                                <li>@muscle</li>
+                            }
+                        </ol>
+                    </div>
+                    <div>
+                        <br>
+                        <div><span><b>Instructions:</b></span></div>
+                        <br>
+                        <ol class="instructions-list">
+                            @foreach (var instruction in Model.Instructions)
+                            {
+                                <li>@instruction</li>
+                            }
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

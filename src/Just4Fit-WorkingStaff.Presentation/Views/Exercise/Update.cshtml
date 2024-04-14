@@ -1,0 +1,65 @@
+@model Exercise
+
+@{
+    ViewData["Title"] = "Update exercise";
+
+    string? name = @Model.Name;
+
+    string? bodyPart = @Model.BodyPart;
+
+    string? equipment = @Model.Equipment;
+
+    string? target = @Model.Target;
+
+    string? secondaryMuscles = string.Empty;
+
+    string?[]? instructions = default;
+
+    bool isApproved = false;
+}
+
+<h1 class="text-center" style="color: white;">@ViewData["Title"]</h1>
+
+<form id="update-exercise">
+    <div class="mb-3">
+        <label asp-for="@name" class="form-label">Name: </label>
+        <input required type="text" asp-for="@name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@bodyPart" class="form-label">Body part: </label>
+        <input required type="text" asp-for="@bodyPart" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@equipment" class="form-label">Equipment: </label>
+        <input required type="text" asp-for="@equipment" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@target" class="form-label">Target: </label>
+        <input required type="text" asp-for="@target" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="mb-3">
+        <textArea readonly style="background-color: transparent; color: white; width: 100%; display: block;" id="secondary-muscles-display" asp-for="@secondaryMuscles"></textArea>
+        <input style="width: 96%; display: inline;" class="form-control" id="muscle-array-input" type="text" placeholder="Type a muscle name"> 
+        <button type="button" class="btn" style="font-weight: 700;font-size: 12px;display: inline;" onclick="addMuscle()" id="add-muscle">Add</button>
+    </div>
+
+    <br>
+
+    <div class="mb-3">
+        <textArea readonly style="background-color: transparent; color: white; width: 100%; display: block;" id="instruction-display" asp-for="@instructions"></textArea>
+        <input style="width: 96%; display: inline;" class="form-control" id="instruction-array-input" type="text" placeholder="Type an instruction step"> 
+        <button type="button" class="btn" style="font-weight: 700;font-size: 12px;display: inline;" onclick="addInstruction()" id="add-instruction">Add</button>
+    </div>
+
+    <br>
+
+    <button onclick="updateExercise(@Model.Id)" type="submit" class="btn submit-button">Create new vehicle</button>
+</form>
+
+<script src="~/js/exercises-operations.js"></script>

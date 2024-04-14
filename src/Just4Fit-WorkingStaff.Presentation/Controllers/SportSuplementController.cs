@@ -6,7 +6,6 @@ using Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-
 public class SportSuplementController : Controller
 {
     private readonly ISender sender;
