@@ -76,6 +76,7 @@ public class ExerciseController : Controller
         return base.RedirectToAction(actionName: "Index");
     }
 
+    [HttpDelete]
     [Route("[controller]/[action]/{id}")]
     public async Task<IActionResult> Delete(int? id)
     {

@@ -1,0 +1,29 @@
+@model News
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel='stylesheet' href='~/css/exercise.css'>
+
+<br>
+<br>
+
+<h1 style="text-align: center !important;">@Model.Title.ToUpper()</h1>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="width: 1250px">
+                <div class="card-body description">
+                    <img src="@Model.ImageUrl"/>
+                    <div>@Model.Description</div>
+                    <div>@Model.CreationDate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

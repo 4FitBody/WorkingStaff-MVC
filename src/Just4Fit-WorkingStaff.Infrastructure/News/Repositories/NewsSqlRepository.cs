@@ -23,6 +23,8 @@ public class NewsSqlRepository : INewsRepository
 
     public async Task CreateAsync(News news)
     {
+        news.CreationDate = DateTime.UtcNow;
+
         await this.dbContext.News.AddAsync(news);
 
         await this.dbContext.SaveChangesAsync();
@@ -45,10 +47,16 @@ public class NewsSqlRepository : INewsRepository
         oldNews.Title = news.Title;
 #pragma warning restore CS8602
         oldNews.Description = news.Description;
-        oldNews.CreationDate = news.CreationDate;
-        oldNews.ImageUrl = news.ImageUrl;
+        oldNews.CreationDate = DateTime.UtcNow;
         oldNews.IsApproved = news.IsApproved;
 
         await this.dbContext.SaveChangesAsync();
+    }
+
+    public async Task<News> GetByIdAsync(int id)
+    {
+        var searchedNews = await this.dbContext.News.FirstOrDefaultAsync(news => news.Id == id);
+    
+        return searchedNews!;
     }
 }
