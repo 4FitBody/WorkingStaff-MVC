@@ -27,12 +27,12 @@
 
                         <div class="card-body">
                             <button type="button" class="button-link"
-                                onclick="location.href='@Url.Action("GetById", new { id = pair.Id, imageUrl = pair.ImageUrl })'">@pair.Name</button>
+                                onclick="location.href='@Url.Action("GetById", new { id = pair.Id})'">@pair.Name</button>
                         </div>
 
                         <button type="button" onclick="submitDeleteForm('@pair.Id')" class="btn btn-danger">Delete</button>
                         <button type="button" onclick="location.href='@Url.Action("Update",new {id = pair.Id})'"
-                            class="btn btn-danger"> Change </button>
+                            class="btn btn-primary"> Change </button>
                     </form>
                 </div>
             </div>
