@@ -8,4 +8,5 @@ public interface IFoodRepository
     Task CreateAsync(Food food);
     Task DeleteAsync(int id);
     Task UpdateAsync(int id, Food food);
+    Task<Food> GetByIdAsync(int id);
 }

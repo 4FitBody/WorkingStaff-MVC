@@ -16,23 +16,29 @@
 <h1 style="text-align: center;">@ViewData["Title"]</h1>
 
 <div class="container">
-     <div class="row">
+    <div class="row">
         @foreach (var pair in Model)
         {
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
+                    <form id="@pair.Id">
 
-                    <img src="@pair.ImageUrl" class="card-img-top" alt="FoodCover">
+                        <img src="@pair.ImageUrl" class="card-img-top" alt="FoodCover">
 
-                    <div class="card-body">
-                        <button type="button" class="button-link"
-                            onclick="location.href='@Url.Action("GetById", new { id = pair.Id, imageUrl = pair.ImageUrl })'">@pair.Name</button>
-                    </div>
+                        <div class="card-body">
+                            <button type="button" class="button-link"
+                                onclick="location.href='@Url.Action("GetById", new { id = pair.Id})'">@pair.Name</button>
+                        </div>
 
+                        <button type="button" onclick="submitDeleteForm('@pair.Id')" class="btn btn-danger">Delete</button>
+                        <button type="button" onclick="location.href='@Url.Action("Update",new {id = pair.Id})'"
+                            class="btn btn-primary"> Change </button>
+                    </form>
                 </div>
             </div>
         }
     </div>
+    <a href="@Url.Action("Create", "Food")" class="fixed-btn">Add Food</a>
 </div>
 
 <script>
@@ -44,7 +50,7 @@
             filterForm.style.display = "block";
         }
     }
-    
+
     const toggleSearch = (search, button) => {
         const searchBar = document.getElementById(search),
             searchButton = document.getElementById(button)
@@ -54,4 +60,28 @@
         })
     }
     toggleSearch('search-bar', 'search-button')
+
+    async function submitDeleteForm(itemId) {
+        event.preventDefault();
+
+        const form = document.getElementById(itemId);
+
+        const formData = new FormData(form);
+
+        let jsonData = {};
+
+        for (let [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+
+        await fetch('/Food/Delete/' + itemId, {
+            method: "DELETE",
+            body: JSON.stringify(jsonData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(data => {
+            window.location.href = '/Food/Index';
+        });
+    }
 </script>
