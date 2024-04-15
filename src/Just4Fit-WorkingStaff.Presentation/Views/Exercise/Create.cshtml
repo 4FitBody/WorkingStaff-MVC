@@ -1,0 +1,73 @@
+@model Exercise
+
+@{
+    ViewData["Title"] = "Create new exercise";
+
+    string? name = string.Empty;
+
+    string? bodyPart = string.Empty;
+
+    string? equipment = string.Empty;
+
+    string? gifUrl = string.Empty;
+
+    string? target = string.Empty;
+
+    string? secondaryMuscles = string.Empty;
+
+    string?[]? instructions = default;
+
+    bool isApproved = false;
+}
+
+<h1 class="text-center" style="color: white;">@ViewData["Title"]</h1>
+
+<form enctype="multipart/form-data" method="post" asp-controller="Exercise" asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="@name" class="form-label">Name: </label>
+        <input required type="text" asp-for="@name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@bodyPart" class="form-label">Body part: </label>
+        <input required type="text" asp-for="@bodyPart" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@equipment" class="form-label">Equipment: </label>
+        <input required type="text" asp-for="@equipment" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@target" class="form-label">Target: </label>
+        <input required type="text" asp-for="@target" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@gifUrl" class="form-label">Gif Url</label>
+        <br>
+        <input class="form-control" required id="file" type="file" asp-for="@gifUrl" name="file" accept="image/gif"/>
+    </div>
+
+    <br>
+
+    <div class="mb-3">
+        <textArea readonly style="background-color: transparent; color: white; width: 100%; display: block;" id="secondary-muscles-display" asp-for="@secondaryMuscles"></textArea>
+        <input style="width: 96%; display: inline;" class="form-control" id="muscle-array-input" type="text" placeholder="Type a muscle name"> 
+        <button type="button" class="btn" style="font-weight: 700;font-size: 12px;display: inline;" onclick="addMuscle()" id="add-muscle">Add</button>
+    </div>
+
+    <br>
+
+    <div class="mb-3">
+        <textArea readonly style="background-color: transparent; color: white; width: 100%; display: block;" id="instruction-display" asp-for="@instructions"></textArea>
+        <input style="width: 96%; display: inline;" class="form-control" id="instruction-array-input" type="text" placeholder="Type an instruction step"> 
+        <button type="button" class="btn" style="font-weight: 700;font-size: 12px;display: inline;" onclick="addInstruction()" id="add-instruction">Add</button>
+    </div>
+
+    <br>
+
+    <button type="submit" class="btn submit-button">Create new exercise</button>
+</form>
+
+<script src="~/js/exercises-operations.js"></script>

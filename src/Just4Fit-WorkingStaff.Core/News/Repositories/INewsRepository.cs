@@ -8,4 +8,5 @@ public interface INewsRepository
     Task CreateAsync(News news);
     Task DeleteAsync(int id);
     Task UpdateAsync(int id, News news);
+    Task<News> GetByIdAsync(int id);
 }

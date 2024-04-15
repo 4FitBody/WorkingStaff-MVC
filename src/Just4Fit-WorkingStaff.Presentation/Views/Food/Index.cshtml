@@ -1,7 +1,57 @@
 @model IEnumerable<Food>
 
 @{
-    ViewData["Title"] = "Food";
+    ViewData["Title"] = "All Food";
+
+    string query = string.Empty;
+
+    string foodParams = "";
 }
 
+<link rel='stylesheet' href='~/css/food.css'>
+<link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+<h1 style="text-align: center;">@ViewData["Title"]</h1>
+
+<div class="container">
+     <div class="row">
+        @foreach (var pair in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+
+                    <img src="@pair.ImageUrl" class="card-img-top" alt="FoodCover">
+
+                    <div class="card-body">
+                        <button type="button" class="button-link"
+                            onclick="location.href='@Url.Action("GetById", new { id = pair.Id, imageUrl = pair.ImageUrl })'">@pair.Name</button>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function toggleFilterForm() {
+        var filterForm = document.getElementById("filterForm");
+        if (filterForm.style.display === "block") {
+            filterForm.style.display = "none";
+        } else {
+            filterForm.style.display = "block";
+        }
+    }
+    
+    const toggleSearch = (search, button) => {
+        const searchBar = document.getElementById(search),
+            searchButton = document.getElementById(button)
+
+        searchButton.addEventListener('click', () => {
+            searchBar.classList.toggle('show-search')
+        })
+    }
+    toggleSearch('search-bar', 'search-button')
+</script>

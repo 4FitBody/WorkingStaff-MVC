@@ -1,8 +1,55 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    var isAuthenticated = base.User.Identity.IsAuthenticated;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="the-best-ad">
+</div>
+
+<div class="hero-text">
+    <div>
+        <span class="stroke-text">Shape </span>
+        <span>Your</span>
+    </div>
+
+    <div>
+        <span>Ideal body</span>
+    </div>
+
+    <div>
+        <span>
+            In here we will help you to shape and build your ideal body and this live up your life to fullest
+        </span>
+    </div>
+
+    <div class="figures">
+        <div>
+            <span>+140</span>            
+            <span>expert coachs</span>
+        </div>
+        
+        <div>
+            <span>+978</span>            
+            <span>members joined</span>
+        </div>
+        
+        <div>
+            <span>+50</span>            
+            <span>fitness programs</span>
+        </div>
+    </div>
+
+    <div class="hero-buttons">
+        @if (isAuthenticated)
+        {
+            <a class="btn" asp-controller="Identity" asp-action="Profile">Profile</a>
+        }
+        else 
+        {
+            <a class="btn" asp-controller="Identity" asp-action="Login">Get Started</a>
+        }
+        <a class="btn" asp-controller="Home" asp-action="AboutUs">Learn More</a>
+    </div>
+
 </div>

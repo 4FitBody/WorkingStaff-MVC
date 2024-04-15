@@ -8,4 +8,5 @@ public interface IExerciseRepository
     Task CreateAsync(Exercise exercise);
     Task DeleteAsync(int id);
     Task UpdateAsync(int id, Exercise exercise);
+    Task<Exercise> GetByIdAsync(int id);
 }

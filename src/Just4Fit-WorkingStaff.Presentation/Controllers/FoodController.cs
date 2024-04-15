@@ -37,7 +37,6 @@ public class FoodController : Controller
         return base.RedirectToAction(actionName: "Index");
     }
 
-    [HttpDelete]
     public async Task<IActionResult> Delete(int? id)
     {
         var createCommand = new DeleteCommand(id);
