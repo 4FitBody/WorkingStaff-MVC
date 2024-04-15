@@ -1,0 +1,156 @@
+* {
+    text-align: center;
+}
+
+.exercise-body-part {
+    margin: 20px 20px 20px 0;
+    padding: 10px 20px;
+    color: white;
+    background-color: #FFA9A9;
+    font-size: 14px;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+
+.exercise-target {
+    margin: 20px 20px 20px 0;
+    padding: 10px 20px;
+    color: white;
+    background-color: #FCC757;
+    font-size: 14px;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+
+.description {
+    text-align: left;
+}
+
+span.name {
+    font-size: 40px !important;
+}
+
+.exercise-name {
+    color: black;
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.tags {
+    text-align: left;
+    margin-left: 5px;
+}
+
+.details {
+    text-align: left;
+    display: inline-block;
+    margin-left: 250px;
+    margin-top: 50px;
+}
+
+.image-instruction {
+    vertical-align: top;
+    width: 600px;
+}
+
+.details-link {
+    text-decoration: none;
+}
+
+.all-items:hover {
+    transform: scale(1.05);
+    transition: all .8s;
+}
+
+ol.instructions-list,
+ol.instructions-list > li {
+    background-color: white !important;
+    text-align: left;
+}
+
+h1 {
+    margin-top: 60px;
+    color: white;
+}
+
+.exercise-search-container {
+    width: 100%;
+    margin: 60px 0;
+}
+
+input.exercise-search {
+    padding: 2px 8px;
+    height: 40px;
+    width: 60%;
+    border-radius: 8px;
+    background-color: white;
+    font-weight: 400;
+    border: gray 1px solid;
+    text-align: left;
+}
+
+input.exercise-search:focus {
+    transform: none;
+    outline: none;
+}
+
+button.exercise-search {
+    outline: none;
+    border: gray 1px solid;
+    padding: 0;
+    height: 40px;
+    width: 120px;
+    background-color: #FF2625;
+    color: white;
+    text-transform: none;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.body-part-filter-container {
+    margin: 60px 0;
+}
+
+.body-part-icon {
+    width: 80px;
+}
+
+.body-part-filter-container > a {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 100px;
+    color: white;
+    margin: 0 15px;
+    text-decoration: none !important;
+}
+
+#exercises-list {
+    margin-top: 60px;
+}
+
+.body-part {
+    width: 90px;
+    margin: 10px 0;
+    font-weight: 520;
+    display: inline-block;
+}
+
+.body-part-filter-container > a:hover {
+    transform: scale(1.15);
+    transition: all .8s;
+}
+
+span, ul, li {
+    font-size: 22px;
+}
+
+.add-link,
+.add-link:hover {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    margin-left: 100px;
+}

@@ -1,0 +1,34 @@
+.Join {
+    display: flex;
+    padding: 0 2rem;
+    gap: 10rem;
+    margin-left: 80px !important;
+}
+
+.left-j {
+    color: white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+}
+
+.left-j > hr {
+    position: absolute;
+    width: 10.5rem;
+    border: 2px solid var(--orange);
+    border-radius: 20%;
+    margin: -10px 0;
+}
+
+.right-j {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-j {
+    color: white !important;
+    background-color: var(--orange) !important;
+    margin-left: 300px;
+}

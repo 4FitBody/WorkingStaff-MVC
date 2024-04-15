@@ -1,0 +1,35 @@
+@model News
+
+@{
+    ViewData["Title"] = "Create news";
+
+    var title = string.Empty;
+
+    var description = string.Empty;
+
+    var imageUrl = string.Empty;
+
+    bool isApproved = false;
+}
+
+<h1 class="text-center" style="color: white;">@ViewData["Title"]</h1>
+
+<form style="margin-bottom: 400px;" enctype="multipart/form-data" method="post" asp-controller="News" asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="@title" class="form-label">Title: </label>
+        <input required type="text" asp-for="@title" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@description" class="form-label">Description: </label>
+        <textArea required type="text" asp-for="@description" class="form-control"></textArea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@imageUrl" class="form-label">Image Url</label>
+        <br>
+        <input class="form-control" required id="file" type="file" asp-for="@imageUrl" name="file" accept="image/*"/>
+    </div>
+
+    <button type="submit" class="btn submit-button">Create news</button>
+</form>

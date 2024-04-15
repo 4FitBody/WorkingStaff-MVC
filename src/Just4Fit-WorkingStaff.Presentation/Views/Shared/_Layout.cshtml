@@ -1,49 +1,104 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isAuthenticated = base.User.Identity.IsAuthenticated;
+
+    var url = base.Context.Request.Path.ToString();
+
+    var isMainPage = url == "/";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Just4Fit_WorkingStaff.Presentation</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Just4Fit_WorkingStaff.Presentation.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FitnessApp.Presentation.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Just4Fit_WorkingStaff.Presentation</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <div class="App">
+        <div class="hero">
+            <div class="left-h">
+                <header class="header">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img class="logo" src="~/Images/Logo.png"/>
+                    </a>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Just4Fit_WorkingStaff.Presentation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <ul class="header-menu">
+                        @if(!isMainPage)
+                        {
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="AboutUs">About us</a>
+                            </li>
+                        }
+                        <li>
+                            <a asp-controller="Food" asp-action="Index">Food</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Exercise" asp-action="Index">Exercises</a>
+                        </li>
+                        <li>
+                            <a asp-controller="News" asp-action="Index">News</a>
+                        </li>
+                        <li>
+                            <a asp-controller="SportSupplement" asp-action="Index">Sport supplements</a>
+                        </li>
+                        @if(isAuthenticated)
+                        {
+                            <li>
+                                <a asp-controller="Identity" asp-action="Profile">Profile</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Identity" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Identity" asp-action="Login">Login</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Identity" asp-action="Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </header>
+
+                @RenderBody()
+
+                <script src="~/js/show-password.js" asp-append-version="true"></script>
+                <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="~/js/site.js" asp-append-version="true"></script>
+                @await RenderSectionAsync("Scripts", required: false)
+            </div>
+            
+            @if(isMainPage)
+            {
+                <div class="right-h">
+                    <partial name="_RightBar" />
+                </div>
+            }
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+        @if(isMainPage)
+        {
+            <partial name="_News" />
+
+            <partial name="_ExercisePrograms" />
+
+            <partial name="_NutritionPrograms" />
+
+            <partial name="_SupplementsPrograms" />
+
+            <partial name="_Reasons" />
+
+            <partial name="_Footer" />
+        }
+    </div>
 </body>
 </html>

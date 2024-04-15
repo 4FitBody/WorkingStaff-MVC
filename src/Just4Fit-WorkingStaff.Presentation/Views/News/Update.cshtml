@@ -1,0 +1,29 @@
+@model News
+
+@{
+    ViewData["Title"] = "Update news";
+
+    var title = @Model.Title;
+
+    var description = @Model.Description;
+
+    bool isApproved = false;
+}
+
+<h1 class="text-center" style="color: white;">@ViewData["Title"]</h1>
+
+<form style="margin-bottom: 400px;" id="update-exercise">
+    <div class="mb-3">
+        <label asp-for="@title" class="form-label">Title: </label>
+        <input required type="text" asp-for="@title" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@description" class="form-label">Description: </label>
+        <textArea required type="text" asp-for="@description" class="form-control"></textArea>
+    </div>
+
+    <button onclick="updateNews(@Model.Id)" type="submit" class="btn submit-button">Update news</button>
+</form>
+
+<script src="~/js/news-operations.js"></script>

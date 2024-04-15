@@ -1,0 +1,49 @@
+@model IEnumerable<News>
+
+@{
+    ViewData["Title"] = "All news";
+
+    var search = string.Empty;
+}
+
+<link rel='stylesheet' href='~/css/exercise.css'>
+
+<h1 style="text-align: center; color: white;">
+   What is new?
+</h1>
+
+<a class="add-link" asp-controller="News" asp-action="Create">Add news</a>
+
+<div class="container">
+    <div class="row" id="exercises-list">
+        @if (!Model.Any())
+        {
+            <div>Nothing was found!</div>
+        }
+        else
+        {
+            @foreach (var news in Model)
+            {
+                <div id="@news.Id" class="col-md-4">
+                    <div id="exercise-card" class="card mb-4 shadow-sm">
+                        <a id="exercise-link" class="details-link" asp-controller="News" asp-action="Details" asp-route-id="@news.Id">
+                            <div id="exercise-data" class="card-body all-items">
+                                <img style="width: 360px;height: 360px;" src="@news.ImageUrl" alt="@news.Title"/>
+                                <div id="exercise-info" class="tags">
+                                    <label id="body-part-field" class="exercise-body-part">@news.CreationDate</label>
+                                </div>
+                                <div id="name-field" class="exercise-name"><b>@news.Title</b></div>
+                            </div>
+                        </a>
+                        <div id="exercise-info" class="tags" style="text-align: center;">
+                            <button onclick="deleteNews(@news.Id)" id="body-part-field" class="exercise-body-part">Delete</button>
+                            <button onclick="showUpdateNewsView(@news.Id)" id="target-field" class="exercise-target">Update</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<script src="~/js/news-operations.js"></script>

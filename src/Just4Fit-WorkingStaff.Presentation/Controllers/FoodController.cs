@@ -63,7 +63,6 @@ public class FoodController : Controller
         return base.View();
     }
 
-    [HttpDelete]
     public async Task<IActionResult> Delete(int? id)
     {
         var createCommand = new DeleteCommand(id);

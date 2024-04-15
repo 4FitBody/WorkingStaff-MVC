@@ -23,6 +23,10 @@ public class ExerciseSqlRepository : IExerciseRepository
 
     public async Task CreateAsync(Exercise exercise)
     {
+        exercise.Instructions = exercise.Instructions!.Take(exercise.Instructions!.Length - 1).ToArray();
+
+        exercise.SecondaryMuscles = exercise.SecondaryMuscles!.Take(exercise.SecondaryMuscles!.Length - 1).ToArray();
+
         await this.dbContext.Exercises.AddAsync(exercise);
 
         await this.dbContext.SaveChangesAsync();
@@ -45,13 +49,27 @@ public class ExerciseSqlRepository : IExerciseRepository
         oldExercise.Name = exercise.Name;
 #pragma warning restore CS8602
         oldExercise.Equipment = exercise.Equipment;
-        oldExercise.Instructions = exercise.Instructions;
         oldExercise.Target = exercise.Target;
-        oldExercise.GifUrl = exercise.GifUrl;
         oldExercise.BodyPart = exercise.BodyPart;
-        oldExercise.SecondaryMuscles = exercise.SecondaryMuscles;
         oldExercise.IsApproved = exercise.IsApproved;
 
+        if (exercise.SecondaryMuscles is not null)
+        {
+            oldExercise.SecondaryMuscles = exercise.SecondaryMuscles;
+        }
+
+        if (exercise.Instructions is not null)
+        {
+            oldExercise.Instructions = exercise.Instructions;
+        }
+
         await this.dbContext.SaveChangesAsync();
+    }
+
+    public async Task<Exercise> GetByIdAsync(int id)
+    {
+        var searchedExercise = await this.dbContext.Exercises.FirstOrDefaultAsync(exercise => exercise.Id == id);
+    
+        return searchedExercise!;
     }
 }
