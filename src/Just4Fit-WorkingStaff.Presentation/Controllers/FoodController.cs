@@ -10,11 +10,15 @@ using Microsoft.AspNetCore.Mvc;
 public class FoodController : Controller
 {
     private readonly ISender sender;
+    private readonly BlobContainerService blobContainerService;
 
     public FoodController(ISender sender)
     {
         this.sender = sender;
+
+        this.blobContainerService = new BlobContainerService();
     }
+
 
     [HttpGet]
     [ActionName("Index")]
@@ -28,13 +32,29 @@ public class FoodController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromForm] Food food, IFormFile imageFile)
+    public async Task<IActionResult> Create([FromForm] Food food, IFormFile imageFile, IFormFile contentFile)
     {
+        var rawPath = Guid.NewGuid().ToString() + imageFile.FileName;
+
+        var path = rawPath.Replace(" ", "%20");
+
+        food.ImageUrl = "https://4fitbodystorage.blob.core.windows.net/images/" + path;
+
+        await this.blobContainerService.UploadAsync(imageFile.OpenReadStream(), rawPath);
+
+        var VideoRawPath = Guid.NewGuid().ToString() + contentFile.FileName;
+
+        var videoPath = rawPath.Replace(" ", "%20");
+
+        food.VideoUrl = "https://4fitbodystorage.blob.core.windows.net/videos/" + videoPath;
+
+        await this.blobContainerService.UploadAsync(contentFile.OpenReadStream(), VideoRawPath);
+
         var createCommand = new CreateCommand(food);
 
         await this.sender.Send(createCommand);
 
-        return base.RedirectToAction(actionName: "Index");
+        return RedirectToAction("Index");
     }
 
     [HttpGet]

@@ -14,7 +14,7 @@
                     <label asp-for="@food.Name">Name: </label>
                     <input type="text" asp-for="@food.Name" class="form-control" required>
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label asp-for="@food.ImageUrl">Image: </label>
                     <input type="file" accept="image/*" name="imageFile" class="form-control">
                 </div>
@@ -33,9 +33,9 @@
                         <option value="Whole30">Whole30</option>
                     </select>
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label asp-for="@food.VideoUrl">Video: </label>
-                      <input type="text" asp-for="@food.VideoUrl" class="form-control" required>
+                    <input type="file" accept="video/mp4,video/x-m4v,video/*" name="contentFile" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
