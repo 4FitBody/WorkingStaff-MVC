@@ -1,0 +1,51 @@
+@model IEnumerable<Supplement>
+
+@{
+    ViewData["Title"] = "All Supplements";
+    var search = string.Empty;
+}
+
+<link rel='stylesheet' href='~/css/supplement.css'>
+
+<h1 style="text-align: center;">
+    Enhance Your Performance:
+    <br>
+    Explore Our Supplements Range!
+</h1>
+
+<a class="add-link" asp-controller="Supplement" asp-action="Create">Add Supplement</a>
+
+<div class="container">
+    <div class="row" id="supplements-list">
+        @if (!Model.Any())
+        {
+            <div>Nothing was found!</div>
+        }
+        else
+        {
+            @foreach (var supplement in Model)
+            {
+                <div id="@supplement.Id" class="col-md-4">
+                    <div id="supplement-card" class="card mb-4 shadow-sm">
+                        <a id="supplement-link" class="details-link" asp-controller="Supplement" asp-action="Details" asp-route-id="@supplement.Id">
+                            <div id="supplement-data" class="card-body all-items">
+                                <img src="@supplement.ImageUrl" alt="@supplement.Name"/>
+                                <div id="supplement-info" class="tags">
+                                    <label id="type-field" class="supplement-type">@supplement.Type</label>
+                                    <label id="brand-field" class="supplement-brand">@supplement.Brand</label>
+                                </div>
+                                <div id="name-field" class="supplement-name"><b>@supplement.Name</b></div>
+                            </div>
+                        </a>
+                        <div id="supplement-info" class="tags" style="text-align: center;">
+                            <button onclick="deleteSupplement(@supplement.Id)" id="type-field" class="supplement-type">Delete</button>
+                            <button onclick="showUpdateSupplementView(@supplement.Id)" id="brand-field" class="supplement-brand">Update</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<script src="~/js/supplements-functions.js"></script>
