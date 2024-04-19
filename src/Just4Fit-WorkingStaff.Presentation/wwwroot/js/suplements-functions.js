@@ -2,7 +2,7 @@
 async function deleteSupplement(id) {
     if (confirm("Confirm that you want to delete this supplement.")) {
         
-        await fetch('/Supplement/Delete/' + id, {
+        await fetch('/SportSuplement/Delete/' + id, {
             method: 'DELETE'
         }).then(res => {
             if (res.ok) {
@@ -19,29 +19,31 @@ async function deleteSupplement(id) {
 async function updateSupplement(id) {
     event.preventDefault();
 
-    const form = document.getElementById('update-supplement');
+    const form = document.getElementById('update-suplements');
+
     const formData = new FormData(form);
+
     let jsonData = {};
 
     for (let [key, value] of formData.entries()) {
         jsonData[key] = value;
     }
 
-    await fetch('/Supplement/Update/' + id, {
+    await fetch('/SportSuplement/Update/' + id, {
         method: "PUT",
         body: JSON.stringify(jsonData),
         headers: {
             "Content-Type": "application/json"
         }
     }).then(data => {
-        window.location.href = '/Supplement/Index';
+        window.location.href = '/SportSuplement/Index';
     });
 }
 
 async function showUpdateSupplementView(id) {
-    await fetch('/Supplement/Update/' + id, {
+    await fetch('/SportSuplement/Update/' + id, {
         method: 'GET'
-    }).then(res => window.location.href = '/Supplement/Update/' + id);
+    }).then(res => window.location.href = '/SportSuplement/Update/' + id);
 }
 
 

@@ -6,7 +6,6 @@ using Just4Fit_WorkingStaff.Infrastructure.Exercises.Queries;
 using Just4Fit_WorkingStaff.Infrastructure.Services;
 using Just4Fit_WorkingStaff.Presentation.Dtos;
 using MediatR;
-using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Mvc;
 
 public class ExerciseController : Controller

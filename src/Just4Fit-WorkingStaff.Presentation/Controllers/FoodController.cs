@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Just4Fit_WorkingStaff.Core.Food.Models;
 using Just4Fit_WorkingStaff.Infrastructure.Food.Commands;
 using Just4Fit_WorkingStaff.Infrastructure.Food.Queries;
+using Just4Fit_WorkingStaff.Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,13 +43,13 @@ public class FoodController : Controller
 
         await this.blobContainerService.UploadAsync(imageFile.OpenReadStream(), rawPath);
 
-        var VideoRawPath = Guid.NewGuid().ToString() + contentFile.FileName;
+        var videoRawPath = Guid.NewGuid().ToString() + contentFile.FileName;
 
-        var videoPath = rawPath.Replace(" ", "%20");
+        var videoPath = videoRawPath.Replace(" ", "%20");
 
-        food.VideoUrl = "https://4fitbodystorage.blob.core.windows.net/videos/" + videoPath;
+        food.VideoUrl = "https://4fitbodystorage.blob.core.windows.net/images/" + videoPath;
 
-        await this.blobContainerService.UploadAsync(contentFile.OpenReadStream(), VideoRawPath);
+        await this.blobContainerService.UploadAsync(contentFile.OpenReadStream(), videoRawPath);
 
         var createCommand = new CreateCommand(food);
 
@@ -58,7 +59,7 @@ public class FoodController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Create()
+    public IActionResult Create()
     {
         return base.View();
     }

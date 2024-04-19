@@ -44,13 +44,21 @@ public class SportSupplementRepository : ISportSupplementRepository
     {
         var existingSupplement = await dbContext.SportSupplements.FindAsync(id);
 
-        existingSupplement.Name = updatedSupplement.Name;
-        existingSupplement.ImageUrl = updatedSupplement.ImageUrl;
+        existingSupplement!.Name = updatedSupplement.Name;
+        
         existingSupplement.Description = updatedSupplement.Description;
+        
         existingSupplement.ManufactureCountry = updatedSupplement.ManufactureCountry;
+        
         existingSupplement.Quantity = updatedSupplement.Quantity;
 
         await dbContext.SaveChangesAsync();
     }
 
+    public async Task<SportSupplement> GetByIdAsync(int id)
+    {
+        var searchedSportSupplement = await this.dbContext.SportSupplements.FirstOrDefaultAsync(exercise => exercise.Id == id);
+    
+        return searchedSportSupplement!;
+    }
 }

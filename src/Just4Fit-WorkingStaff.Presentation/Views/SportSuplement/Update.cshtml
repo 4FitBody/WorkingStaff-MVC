@@ -28,11 +28,6 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="@imageUrl" class="form-label">Image Url: </label>
-        <input required type="text" asp-for="@imageUrl" class="form-control" value="@imageUrl">
-    </div>
-
-    <div class="mb-3">
         <label asp-for="@description" class="form-label">Description: </label>
         <input required type="text" asp-for="@description" class="form-control" value="@description">
     </div>
@@ -42,13 +37,7 @@
         <input required type="number" asp-for="@quantity" class="form-control" value="@quantity">
     </div>
 
-    <div class="mb-3">
-        <label asp-for="@isApproved" class="form-check-label">Is Approved: </label>
-        <input type="checkbox" asp-for="@isApproved" class="form-check-input" checked="@isApproved">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button onclick="updateSupplement(@Model.Id)" type="submit" class="btn submit-button">Update</button>
 </form>
-
 
 <script src="~/js/suplements-functions.js"></script>

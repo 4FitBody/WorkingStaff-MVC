@@ -1,6 +1,7 @@
 namespace Just4Fit_WorkingStaff.Presentation.Controllers;
 
 using Just4Fit_WorkingStaff.Core.SportSupplements.Models;
+using Just4Fit_WorkingStaff.Infrastructure.Services;
 using Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Commands;
 using Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Queries;
 using MediatR;
@@ -9,10 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 public class SportSuplementController : Controller
 {
     private readonly ISender sender;
+    private readonly BlobContainerService blobContainerService;
 
     public SportSuplementController(ISender sender)
     {
         this.sender = sender;
+
+        this.blobContainerService = new BlobContainerService();
     }
 
     [HttpGet]
@@ -26,10 +30,42 @@ public class SportSuplementController : Controller
         return base.View(model: suplements);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromForm] SportSupplement sportSupplement)
+    [HttpGet]
+    public async Task<IActionResult> Details(int? id)
     {
-        var createCommand = new CreateCommand(sportSupplement);
+        var getByIdQuery = new GetByIdQuery(id);
+
+        var sportSupplement = await this.sender.Send(getByIdQuery);
+
+        return base.View(model: sportSupplement);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return base.View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromForm] SportSupplement sportSupplement, IFormFile file)
+    {
+        var rawPath = Guid.NewGuid().ToString() + file.FileName;
+
+        var path = rawPath.Replace(" ", "%20");
+
+        var supplement = new SportSupplement
+        {
+            Name = sportSupplement.Name,
+            Description = sportSupplement.Description,
+            ManufactureCountry = sportSupplement.ManufactureCountry,
+            Quantity = sportSupplement.Quantity,
+            IsApproved = false,
+            ImageUrl = "https://4fitbodystorage.blob.core.windows.net/images/" + path,
+        };
+
+        await this.blobContainerService.UploadAsync(file.OpenReadStream(), rawPath);
+
+        var createCommand = new CreateCommand(supplement);
 
         await this.sender.Send(createCommand);
 
@@ -37,6 +73,7 @@ public class SportSuplementController : Controller
     }
 
     [HttpDelete]
+    [Route("[controller]/[action]/{id}")]
     public async Task<IActionResult> Delete(int? id)
     {
         var createCommand = new DeleteCommand(id);
@@ -46,7 +83,19 @@ public class SportSuplementController : Controller
         return base.RedirectToAction(actionName: "Index");
     }
 
+    [HttpGet]
+    [Route("[controller]/[action]/{id}")]
+    public async Task<IActionResult> Update(int? id)
+    {
+        var getByIdQuery = new GetByIdQuery(id);
+
+        var exercise = await this.sender.Send(getByIdQuery);
+
+        return base.View(model: exercise);
+    }
+
     [HttpPut]
+    [Route("[controller]/[action]/{id}")]
     public async Task<IActionResult> Update(int? id, [FromBody] SportSupplement sportSupplement)
     {
         var createCommand = new UpdateCommand(id, sportSupplement);

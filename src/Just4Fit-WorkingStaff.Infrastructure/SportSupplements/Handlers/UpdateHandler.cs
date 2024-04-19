@@ -4,9 +4,9 @@ using System;
 using System.Threading.Tasks;
 using Just4Fit_WorkingStaff.Core.SportSupplements.Models.Repositories;
 using Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Commands;
+using MediatR;
 
-
-public class UpdateHandler
+public class UpdateHandler : IRequestHandler<UpdateCommand>
 {
     private readonly ISportSupplementRepository supplementRepository;
 

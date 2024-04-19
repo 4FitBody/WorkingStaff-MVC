@@ -8,4 +8,5 @@ public interface ISportSupplementRepository
     Task CreateAsync(SportSupplement supplement);
     Task UpdateAsync(int id, SportSupplement updatedSupplement);
     Task DeleteAsync(int id);
+    Task<SportSupplement> GetByIdAsync(int id);
 }
