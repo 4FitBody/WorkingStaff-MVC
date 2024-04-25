@@ -4,8 +4,9 @@ using System;
 using System.Threading.Tasks;
 using Just4Fit_WorkingStaff.Core.SportSupplements.Models.Repositories;
 using Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Commands;
+using MediatR;
 
-public class DeleteHandler
+public class DeleteHandler : IRequestHandler<DeleteCommand>
 {
     private readonly ISportSupplementRepository supplementRepository;
 

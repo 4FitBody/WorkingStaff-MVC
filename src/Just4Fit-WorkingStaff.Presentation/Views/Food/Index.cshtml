@@ -8,12 +8,15 @@
     string foodParams = "";
 }
 
+<link rel='stylesheet' href='~/css/exercise.css'>
 <link rel='stylesheet' href='~/css/food.css'>
 <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <h1 style="text-align: center;">@ViewData["Title"]</h1>
+
+<a class="add-link" href="@Url.Action("Create", "Food")">Add Food</a>
 
 <div class="container">
     <div class="row">
@@ -23,22 +26,21 @@
                 <div class="card mb-4 shadow-sm">
                     <form id="@pair.Id">
 
-                        <img src="@pair.ImageUrl" class="card-img-top" alt="FoodCover">
+                        <img style="width: 360px;height: 360px;" src="@pair.ImageUrl" class="card-img-top" alt="FoodCover">
 
                         <div class="card-body">
                             <button type="button" class="button-link"
                                 onclick="location.href='@Url.Action("GetById", new { id = pair.Id})'">@pair.Name</button>
                         </div>
 
-                        <button type="button" onclick="submitDeleteForm('@pair.Id')" class="btn btn-danger">Delete</button>
+                        <button type="button" onclick="submitDeleteForm('@pair.Id')" class="exercise-body-part">Delete</button>
                         <button type="button" onclick="location.href='@Url.Action("Update",new {id = pair.Id})'"
-                            class="btn btn-primary"> Change </button>
+                            class="exercise-target">Update</button>
                     </form>
                 </div>
             </div>
         }
     </div>
-    <a href="@Url.Action("Create", "Food")" class="fixed-btn">Add Food</a>
 </div>
 
 <script>

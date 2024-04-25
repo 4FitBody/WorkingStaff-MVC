@@ -1,7 +1,7 @@
 @model SportSupplement
 
 @{
-    ViewData["Title"] = "Create new exercise";
+    ViewData["Title"] = "Create new supplement";
 
     string name = string.Empty;
 
@@ -16,7 +16,9 @@
     bool isApproved = false;
 }
 
-<form enctype="multipart/form-data" method="post" asp-controller="SportSuplement" asp-action="Create">
+<h1 class="text-center" style="color: white;">@ViewData["Title"]</h1>
+
+<form style="margin-bottom: 300px;" enctype="multipart/form-data" method="post" asp-controller="SportSuplement" asp-action="Create">
     <div class="mb-3">
         <label asp-for="@name" class="form-label">Name: </label>
         <input required type="text" asp-for="@name" class="form-control" value="@name">
@@ -29,7 +31,7 @@
 
     <div class="mb-3">
         <label asp-for="@imageUrl" class="form-label">Image Url: </label>
-        <input id="file" name="file" required type="file" asp-for="@imageUrl" class="form-control" value="@imageUrl">
+        <input id="file" name="file" required type="file" asp-for="@imageUrl" class="form-control" value="@imageUrl" accept="image/*">
     </div>
 
     <div class="mb-3">
@@ -39,15 +41,10 @@
 
     <div class="mb-3">
         <label asp-for="@quantity" class="form-label">Quantity: </label>
-        <input required type="text" asp-for="@quantity" class="form-control" value="@quantity">
+        <input required min="0" type="number" asp-for="@quantity" class="form-control" value="@quantity">
     </div>
 
-    <div class="mb-3">
-        <label asp-for="@isApproved" class="form-check-label">Is Approved: </label>
-        <input type="checkbox" asp-for="@isApproved" class="form-check-input" checked="@isApproved">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn submit-button">Create</button>
 </form>
 
 

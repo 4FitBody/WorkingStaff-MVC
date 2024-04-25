@@ -6,6 +6,7 @@
 }
 
 <link rel='stylesheet' href='~/css/supplement.css'>
+<link rel='stylesheet' href='~/css/exercise.css'>
 
 <h1 style="text-align: center;">
     Enhance Your Performance:
@@ -13,10 +14,10 @@
     Explore Our Supplements Range!
 </h1>
 
-<a class="add-link" asp-controller="Supplement" asp-action="Create">Add Supplement</a>
+<a class="add-link" asp-controller="SportSuplement" asp-action="Create">Add Supplement</a>
 
 <div class="container">
-    <div class="row" id="supplements-list">
+    <div class="row" id="exercises-list">
         @if (!Model.Any())
         {
             <div>Nothing was found!</div>
@@ -26,20 +27,20 @@
             @foreach (var supplement in Model)
             {
                 <div id="@supplement.Id" class="col-md-4">
-                    <div id="supplement-card" class="card mb-4 shadow-sm">
-                        <a id="supplement-link" class="details-link" asp-controller="Supplement" asp-action="Details" asp-route-id="@supplement.Id">
-                            <div id="supplement-data" class="card-body all-items">
-                                <img src="@supplement.ImageUrl" alt="@supplement.Name"/>
-                                <div id="supplement-info" class="tags">
-                                    <label id="type-field" class="supplement-type">@supplement.Type</label>
-                                    <label id="brand-field" class="supplement-brand">@supplement.Brand</label>
+                    <div id="exercise-card" class="card mb-4 shadow-sm">
+                        <a id="exercise-link" class="details-link" asp-controller="Suplement" asp-action="Details" asp-route-id="@supplement.Id">
+                            <div id="exercise-data" class="card-body all-items">
+                                <img style="width: 360px;height: 360px;" src="@supplement.ImageUrl" alt="@supplement.Name"/>
+                                <div id="exercise-info" class="tags">
+                                    <label id="type-field" class="exercise-type">@supplement.ManufactureCountry</label>
+                                    <label id="brand-field" class="exercise-brand">@supplement.Quantity</label>
                                 </div>
-                                <div id="name-field" class="supplement-name"><b>@supplement.Name</b></div>
+                                <div id="name-field" class="exercise-name"><b>@supplement.Name</b></div>
                             </div>
                         </a>
-                        <div id="supplement-info" class="tags" style="text-align: center;">
-                            <button onclick="deleteSupplement(@supplement.Id)" id="type-field" class="supplement-type">Delete</button>
-                            <button onclick="showUpdateSupplementView(@supplement.Id)" id="brand-field" class="supplement-brand">Update</button>
+                        <div id="exercise-info" class="tags" style="text-align: center;">
+                            <button onclick="deleteSupplement(@supplement.Id)" id="type-field" class="exercise-type">Delete</button>
+                            <button onclick="showUpdateSupplementView(@supplement.Id)" id="brand-field" class="exercise-brand">Update</button>
                         </div>
                     </div>
                 </div>
@@ -48,4 +49,4 @@
     </div>
 </div>
 
-<script src="~/js/supplements-functions.js"></script>
+<script src="~/js/suplements-functions.js"></script>

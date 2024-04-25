@@ -19,15 +19,15 @@
             <div
                 class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
 
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">@Model.Name
+                <h1 style="color: white;" class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">@Model.Name
                 </h1>
 
-                <p class="mb-8 leading-relaxed" style="text-align: justify">@Html.Raw(Model.Description)</p>
+                <p class="mb-8 leading-relaxed" style="text-align: justify; color: white">@Html.Raw(Model.Description)</p>
 
             </div>
 
             <div class="lg:max-w-lg  md:w-1/2 w-5/6">
-                @if ($"https://www.youtube.com/embed/{ViewBag.VideoId}" == "https://www.youtube.com/embed/")
+                @if (@Model.VideoUrl is null)
                 {
                     <div class="not-found"
                         style="width: 420px; height: 315px; background-color: black; color: gray; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
@@ -37,7 +37,7 @@
                 else
                 {
                     <iframe class="object-cover object-center rounded" width="420" height="315"
-                        src="https://www.youtube.com/embed/@ViewBag.VideoId"></iframe>
+                        src="@Model.VideoUrl"></iframe>
                 }
             </div>
 

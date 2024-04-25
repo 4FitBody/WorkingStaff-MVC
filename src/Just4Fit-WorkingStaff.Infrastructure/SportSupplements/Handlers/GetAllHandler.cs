@@ -2,9 +2,10 @@ namespace Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Handlers;
 
 using Just4Fit_WorkingStaff.Core.SportSupplements.Models;
 using Just4Fit_WorkingStaff.Core.SportSupplements.Models.Repositories;
-using Just4Fit_WorkingStaff.Infrastructure.Exercises.Queries;
+using Just4Fit_WorkingStaff.Infrastructure.SportSupplements.Queries;
+using MediatR;
 
-public class GetAllHandler
+public class GetAllHandler : IRequestHandler<GetAllQuery, IEnumerable<SportSupplement>>
 {
     private readonly ISportSupplementRepository sportSupplementRepository;
 

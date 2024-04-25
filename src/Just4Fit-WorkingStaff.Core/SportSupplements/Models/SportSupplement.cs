@@ -14,5 +14,5 @@ public class SportSupplement
 
     public double? Quantity { get; set; }
 
-     public bool IsApproved {get; set;} 
+    public bool IsApproved { get; set; }
 }

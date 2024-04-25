@@ -6,11 +6,18 @@ using Just4Fit_WorkingStaff.Presentation.Models;
 
 public class HomeController : Controller
 {
+    [HttpGet]
     public IActionResult Index()
     {
-        return View();
+        return base.View();
     }
 
+    [HttpGet]
+    public IActionResult AboutUs()
+    {
+        return base.View();
+    }
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
